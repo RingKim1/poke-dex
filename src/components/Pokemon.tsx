@@ -6,9 +6,7 @@ interface PokemonProps {
   pokemon: Pokemon;
 }
 
-export default function Pokemon({ pokemon }: PokemonProps) {
-  const { audioRef, playSound } = usePlaySoundButton();
-
+const Pokemon: React.FC<PokemonProps> = ({ pokemon }): JSX.Element => {
   return (
     <Link
       href={`/kanto-dex/list/detail/${pokemon.id}`}
@@ -27,28 +25,18 @@ export default function Pokemon({ pokemon }: PokemonProps) {
         </span>
       </div>
       <div className="flex justify-center mt-2 sm:mt-4">
-        <button onClick={playSound}>
-          <img
-            className={`h-20 w-20 sm:h-32 sm:w-32 ${
-              pokemon.id === 54 ||
-              pokemon.id === 60 ||
-              pokemon.id === 61 ||
-              pokemon.id === 62 ||
-              pokemon.id === 81 ||
-              pokemon.id === 82 ||
-              pokemon.id === 100 ||
-              pokemon.id === 101 ||
-              pokemon.id === 120 ||
-              pokemon.id === 121
-                ? "animate-spin-slow"
-                : ""
-            }`}
-            src={pokemon.sprites.front_default}
-            alt={pokemon.korean_name}
-          />
-        </button>
-        <audio ref={audioRef} src={`${pokemon.cries.latest}`} />
+        <img
+          className={`h-20 w-20 sm:h-32 sm:w-32 ${
+            [54, 60, 61, 62, 81, 82, 100, 101, 120, 121].includes(pokemon.id)
+              ? "animate-spin-slow"
+              : ""
+          }`}
+          src={pokemon.sprites.front_default}
+          alt={pokemon.korean_name}
+        />
       </div>
     </Link>
   );
-}
+};
+
+export default Pokemon;

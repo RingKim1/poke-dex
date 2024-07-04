@@ -2,7 +2,7 @@ import React from "react";
 import { pokeDexImg } from "../../public/imageAddress";
 import Link from "next/link";
 
-export default function PokeDex() {
+const PokeDex: React.FC = (): JSX.Element => {
   return (
     <Link
       className="flex justify-center items-center w-full	h-full"
@@ -15,4 +15,6 @@ export default function PokeDex() {
       />
     </Link>
   );
-}
+};
+
+export default PokeDex;

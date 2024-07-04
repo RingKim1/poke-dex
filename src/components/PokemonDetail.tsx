@@ -3,10 +3,12 @@
 import fetchPokemonDetail from "@/hooks/useFetchPokemonDetail";
 import usePlaySoundButton from "@/hooks/usePlaySoundButton";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
-export default function PokemonDetail() {
+export default function PokemonDetail(): React.JSX.Element {
   const { id } = useParams<{ id: string }>();
   const { audioRef, playSound } = usePlaySoundButton();
 
@@ -43,30 +45,26 @@ export default function PokemonDetail() {
     cries,
   } = data;
 
+  const specialIds = [54, 60, 61, 62, 81, 82, 100, 101, 120, 121];
+
   return (
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border-2 border-yellow-400 p-4">
       <div className="flex justify-between items-center mb-4">
-        <span className="text-lg font-semibold text-gray-800">No.{id}</span>
-        <span className="text-lg font-bold text-gray-800">
-          {korean_name} ({name})
-        </span>
+        <div>
+          <span className="text-lg font-semibold text-gray-800">No.{id}</span>
+          <span className="text-lg ml-3 font-bold text-gray-800">
+            {korean_name} ({name})
+          </span>
+        </div>
+        <Link href="/kanto-dex/list" className="cursor-pointer">
+          <RiArrowGoBackFill className="w-8 h-8" />
+        </Link>
       </div>
       <div className="flex justify-center mb-4">
         <button onClick={playSound}>
           <img
-            className={`h-32 w-32 active:animate-ping ${
-              id === "54" ||
-              id === "60" ||
-              id === "61" ||
-              id === "62" ||
-              id === "81" ||
-              id === "82" ||
-              id === "100" ||
-              id === "101" ||
-              id === "120" ||
-              id === "121"
-                ? "animate-spin-slow"
-                : ""
+            className={`h-20 w-20 sm:h-32 sm:w-32 ${
+              specialIds.includes(Number(id)) ? "animate-spin-slow" : ""
             }`}
             src={sprites?.front_default}
             alt={korean_name}

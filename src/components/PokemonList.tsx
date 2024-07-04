@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Pokemon from "./Pokemon";
 import fetchPokemon from "@/hooks/useFetchPokemon";
 
-export default function PokemonList() {
+export default function PokemonList(): React.JSX.Element {
   // const [data, setData] = useState<Pokemon[]>([]);
 
   // const getPokemon = async () => {
@@ -24,7 +24,7 @@ export default function PokemonList() {
   //   getPokemon();
   // }, []);
 
-  const { data, error, isPending } = useQuery({
+  const { data, error, isPending } = useQuery<Pokemon[], Error>({
     queryKey: ["pokemons"],
     queryFn: fetchPokemon,
   });
