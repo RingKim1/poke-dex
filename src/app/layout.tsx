@@ -1,19 +1,15 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Header from "@/components/layout/Header";
+import QueryProvider from "@/provider/QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "포켓몬 도감",
-//   description: "오늘의 포켓몬을 뭘까요~?",
-// };
-
-const queryClient = new QueryClient();
+export const metadata: Metadata = {
+  title: "포켓몬 도감",
+  description: "오늘의 포켓몬을 뭘까요~?",
+};
 
 export default function RootLayout({
   children,
@@ -27,10 +23,10 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={inter.className}>
-        <QueryClientProvider client={queryClient}>
+        <QueryProvider>
           <Header />
           {children}
-        </QueryClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );

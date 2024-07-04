@@ -1,12 +1,14 @@
 "use client";
 
 import fetchPokemonDetail from "@/hooks/useFetchPokemonDetail";
+import usePlaySoundButton from "@/hooks/usePlaySoundButton";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";
 
 export default function PokemonDetail() {
   const { id } = useParams<{ id: string }>();
+  const { audioRef, playSound } = usePlaySoundButton();
 
   const { data, error, isPending } = useQuery({
     queryKey: ["pokemons", id],
@@ -29,8 +31,6 @@ export default function PokemonDetail() {
     );
   }
 
-  console.log(data);
-
   const {
     name,
     korean_name,
@@ -40,6 +40,7 @@ export default function PokemonDetail() {
     types,
     abilities,
     moves,
+    cries,
   } = data;
 
   return (
@@ -51,24 +52,27 @@ export default function PokemonDetail() {
         </span>
       </div>
       <div className="flex justify-center mb-4">
-        <img
-          className={`h-32 w-32 ${
-            id === "54" ||
-            id === "60" ||
-            id === "61" ||
-            id === "62" ||
-            id === "81" ||
-            id === "82" ||
-            id === "100" ||
-            id === "101" ||
-            id === "120" ||
-            id === "121"
-              ? "animate-spin duration-[3000ms]"
-              : ""
-          }`}
-          src={sprites?.front_default}
-          alt={korean_name}
-        />
+        <button onClick={playSound}>
+          <img
+            className={`h-32 w-32 active:animate-ping ${
+              id === "54" ||
+              id === "60" ||
+              id === "61" ||
+              id === "62" ||
+              id === "81" ||
+              id === "82" ||
+              id === "100" ||
+              id === "101" ||
+              id === "120" ||
+              id === "121"
+                ? "animate-spin-slow"
+                : ""
+            }`}
+            src={sprites?.front_default}
+            alt={korean_name}
+          />
+        </button>
+        <audio ref={audioRef} src={`${cries.latest}`} />
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="text-gray-800">

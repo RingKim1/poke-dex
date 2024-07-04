@@ -1,3 +1,4 @@
+import usePlaySoundButton from "@/hooks/usePlaySoundButton";
 import Link from "next/link";
 import React from "react";
 
@@ -6,6 +7,8 @@ interface PokemonProps {
 }
 
 export default function Pokemon({ pokemon }: PokemonProps) {
+  const { audioRef, playSound } = usePlaySoundButton();
+
   return (
     <Link
       href={`/kanto-dex/list/detail/${pokemon.id}`}
@@ -24,24 +27,27 @@ export default function Pokemon({ pokemon }: PokemonProps) {
         </span>
       </div>
       <div className="flex justify-center mt-2 sm:mt-4">
-        <img
-          className={`h-20 w-20 sm:h-32 sm:w-32 ${
-            pokemon.id === 54 ||
-            pokemon.id === 60 ||
-            pokemon.id === 61 ||
-            pokemon.id === 62 ||
-            pokemon.id === 81 ||
-            pokemon.id === 82 ||
-            pokemon.id === 100 ||
-            pokemon.id === 101 ||
-            pokemon.id === 120 ||
-            pokemon.id === 121
-              ? "animate-spin duration-[3000ms]"
-              : ""
-          }`}
-          src={pokemon.sprites.front_default}
-          alt={pokemon.korean_name}
-        />
+        <button onClick={playSound}>
+          <img
+            className={`h-20 w-20 sm:h-32 sm:w-32 ${
+              pokemon.id === 54 ||
+              pokemon.id === 60 ||
+              pokemon.id === 61 ||
+              pokemon.id === 62 ||
+              pokemon.id === 81 ||
+              pokemon.id === 82 ||
+              pokemon.id === 100 ||
+              pokemon.id === 101 ||
+              pokemon.id === 120 ||
+              pokemon.id === 121
+                ? "animate-spin-slow"
+                : ""
+            }`}
+            src={pokemon.sprites.front_default}
+            alt={pokemon.korean_name}
+          />
+        </button>
+        <audio ref={audioRef} src={`${pokemon.cries.latest}`} />
       </div>
     </Link>
   );

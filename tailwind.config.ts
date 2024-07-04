@@ -16,6 +16,9 @@ const config: Config = {
       screens: {
         xs: "480px",
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
     },
   },
   plugins: [],
