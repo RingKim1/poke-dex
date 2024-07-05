@@ -64,7 +64,7 @@ export default function PokemonDetail(): React.JSX.Element {
       <div className="flex justify-center mb-4">
         <button onClick={playSound}>
           <Image
-            className={`h-20 w-20 sm:h-32 sm:w-32 ${
+            className={`h-20 w-20 sm:h-32 sm:w-32 active:animate-ping ${
               specialIds.includes(Number(id)) ? "animate-spin-slow" : ""
             }`}
             src={sprites?.front_default}
