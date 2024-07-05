@@ -1,5 +1,6 @@
 "use client";
 
+import usePlaySoundButton from "@/hooks/usePlaySoundButton";
 import Link from "next/link";
 import React, { useState, ReactElement } from "react";
 
@@ -7,6 +8,7 @@ interface HeaderProps {}
 
 export default function Header({}: HeaderProps): ReactElement {
   const [activeLink, setActiveLink] = useState<string | null>(null);
+  const { audioRef, playSound } = usePlaySoundButton();
 
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
@@ -21,9 +23,24 @@ export default function Header({}: HeaderProps): ReactElement {
 
   return (
     <header>
-      <Link href={"/"}>
-        <h1 className="text-2xl font-bold text-center m-4">포켓몬 도감</h1>
-      </Link>
+      <div className="flex justify-between items-center">
+        <img
+          className="cursor-pointer hover:animate-bounce"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/54.gif"
+        />
+        <Link href={"/"}>
+          <h1 className="text-2xl font-bold text-center m-4">포켓몬 도감</h1>
+        </Link>
+        <img
+          className="cursor-pointer hover:animate-bounce"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+          onClick={playSound}
+        />
+        <audio
+          ref={audioRef}
+          src={`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg`}
+        />
+      </div>
       <nav>
         <ul className="grid grid-cols-3 gap-0">
           <Link href="/kanto-dex/list" passHref>

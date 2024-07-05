@@ -46,6 +46,8 @@ export default function PokemonList(): React.JSX.Element {
     );
   }
 
+  console.log(data.data[53]);
+
   const pokemonList = data?.data ?? [];
 
   return (
