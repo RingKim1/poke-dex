@@ -1,4 +1,5 @@
 import usePlaySoundButton from "@/hooks/usePlaySoundButton";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -25,7 +26,18 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemon }): JSX.Element => {
         </span>
       </div>
       <div className="flex justify-center mt-2 sm:mt-4">
-        <img
+        <Image
+          className={`h-20 w-20 sm:h-32 sm:w-32 ${
+            [54, 60, 61, 62, 81, 82, 100, 101, 120, 121].includes(pokemon.id)
+              ? "animate-spin-slow"
+              : ""
+          }`}
+          src={pokemon.sprites.front_default}
+          width={80}
+          height={80}
+          alt={pokemon.korean_name}
+        />
+        {/* <img
           className={`h-20 w-20 sm:h-32 sm:w-32 ${
             [54, 60, 61, 62, 81, 82, 100, 101, 120, 121].includes(pokemon.id)
               ? "animate-spin-slow"
@@ -33,7 +45,7 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemon }): JSX.Element => {
           }`}
           src={pokemon.sprites.front_default}
           alt={pokemon.korean_name}
-        />
+        /> */}
       </div>
     </Link>
   );

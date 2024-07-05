@@ -3,6 +3,7 @@
 import fetchPokemonDetail from "@/hooks/useFetchPokemonDetail";
 import usePlaySoundButton from "@/hooks/usePlaySoundButton";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
@@ -62,11 +63,13 @@ export default function PokemonDetail(): React.JSX.Element {
       </div>
       <div className="flex justify-center mb-4">
         <button onClick={playSound}>
-          <img
+          <Image
             className={`h-20 w-20 sm:h-32 sm:w-32 ${
               specialIds.includes(Number(id)) ? "animate-spin-slow" : ""
             }`}
             src={sprites?.front_default}
+            width={80}
+            height={80}
             alt={korean_name}
           />
         </button>

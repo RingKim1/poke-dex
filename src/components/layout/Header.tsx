@@ -109,11 +109,7 @@ export default function Header({}: HeaderProps): ReactElement {
         </ul>
         <Link href="/unclassified/list" passHref>
           <div
-            className={`bg-gold p-4 text-center text-white font-extrabold mt-0 transition-transform transform border border-gray-300 cursor-pointer ${
-              activeLink === "unclassified"
-                ? "bg-opacity-75 text-black"
-                : "hover:bg-opacity-75 hover:text-black"
-            }`}
+            className={`${linkClass("unclassified")} bg-slate-200	`}
             onClick={() => handleLinkClick("unclassified")}
           >
             미분류
