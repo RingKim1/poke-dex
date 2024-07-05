@@ -25,7 +25,7 @@ export default function PokemonList(): React.JSX.Element {
   //   getPokemon();
   // }, []);
 
-  const { data, error, isPending } = useQuery<Pokemon[], Error>({
+  const { data, error, isPending } = useQuery<Data, Error>({
     queryKey: ["pokemons"],
     queryFn: fetchPokemon,
   });
