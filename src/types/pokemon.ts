@@ -10,3 +10,8 @@ type Pokemon = {
   moves: { move: { name: string; korean_name: string } }[];
   cries: { latest: string; legacy: string };
 };
+
+type PokemonPage = {
+  data: Pokemon[];
+  nextPage?: number;
+};

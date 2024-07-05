@@ -37,15 +37,6 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemon }): JSX.Element => {
           height={80}
           alt={pokemon.korean_name}
         />
-        {/* <img
-          className={`h-20 w-20 sm:h-32 sm:w-32 ${
-            [54, 60, 61, 62, 81, 82, 100, 101, 120, 121].includes(pokemon.id)
-              ? "animate-spin-slow"
-              : ""
-          }`}
-          src={pokemon.sprites.front_default}
-          alt={pokemon.korean_name}
-        /> */}
       </div>
     </Link>
   );

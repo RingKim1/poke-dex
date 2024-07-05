@@ -45,9 +45,11 @@ export default function PokemonList(): React.JSX.Element {
     );
   }
 
+  const pokemonList = data?.data ?? [];
+
   return (
     <div className="container mx-auto flex flex-wrap">
-      {data?.map((pokemon: Pokemon) => (
+      {pokemonList.map((pokemon: Pokemon) => (
         <Pokemon key={pokemon.id} pokemon={pokemon} />
       ))}
     </div>
