@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Pokemon from "./Pokemon";
 import fetchPokemon from "@/hooks/useFetchPokemon";
+import { log } from "console";
 
 export default function PokemonList(): React.JSX.Element {
   // const [data, setData] = useState<Pokemon[]>([]);

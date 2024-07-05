@@ -15,3 +15,9 @@ type PokemonPage = {
   data: Pokemon[];
   nextPage?: number;
 };
+
+type Data = {
+  data: Pokemon[];
+  hasNextPage: boolean;
+  totalPages: number;
+};
